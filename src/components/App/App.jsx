@@ -16,10 +16,42 @@ import SupportThree from "../SupportThree/SupportThree";
 import CommentsFour from "../CommentsFour/CommentsFour";
 import ReviewPage from "../ReviewPage/ReviewPage";
 import SuccessPage from "../SuccessPage/SuccessPage";
+import store from "../../store";
 
 function App() {
 
-  
+  const mySelector = useSelector(store => store.feedbackReductionYo)
+
+  const dispatch = useDispatch()
+
+  const setFeelings = (feelings) => ({
+    type: "SET_FEELINGS",
+    payload: feelings,
+  })
+
+  const setUnderstanding = (understanding) => ({
+    type: "SET_UNDERSTANDING",
+    payload: understanding,
+  })
+
+  const setSupport = (support) => ({
+    type: "SET_SUPPORT",
+    payload: support,
+  })
+
+  const setComments = (comments) => ({
+    type: "SET_COMMENTS",
+    payload: comments,
+  })
+
+  const addFeedback = () => ({
+    type: "ADD_FEEDBACK",
+  })
+
+  const getFeedback = (feedbackList) => ({
+    type:"GET_FEEDBACK",
+    payload: feedbackList,
+  })
 
   return (
     <div className="App">
@@ -28,10 +60,7 @@ function App() {
         <h4>Don't forget it!</h4>
       </header>
       <Router>
-        <Link to="/FeelingsOne">
-          <button>Next</button>
-        </Link>
-        <Route exact path="/FeelingsOne">
+        <Route exact path="/">
           <FeelingsOne />
         </Route>
         <Route exact path="/UnderstandingTwo">

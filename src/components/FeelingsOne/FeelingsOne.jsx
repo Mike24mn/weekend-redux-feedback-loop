@@ -1,27 +1,44 @@
 import { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, HashRouter as router, Link } from "react-router-dom";
 
 function FeelingsOne() {
+    
   const [newFeeling, setFeeling] = useState("");
+  const [newUnderstanding, setUnderstanding] = useState("");
+  const [newSupport, setSupport] = useState("");
+  const [newComment, setComment] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
 
-    axios
-      .post("/api/feedback", payload)
+  const dispatch = useDispatch();
 
-      .then((response) => {
-        dispatch({
-          type: "ADD_FEEDBACK", // Very well may wrong set up here
-          payload: payload,
-        });
-        setFeeling("");
-      })
-      .catch((error) => {
-        console.error("failed in axios POST JSX", error);
+  const currentFeedback = useSelector(
+    (state) => state.feedbackReductionYo.currentFeedback
+  );
+
+  const handleSubmit = async (event) => {
+
+    
+
+
+
+    dispatch({ type: "SET_FEELINGS", payload: newFeeling });
+
+    try {
+      await axios.post("/api/feedback", currentFeedback);
+
+      const feedbackResponse = await axios.get("/api/feedback");
+
+      dispatch({
+        type: "GET_FEEDBACK",
+        payload: feedbackResponse.data,
       });
+      setFeeling("");
+      //history.push("/UnderstandingTwo");
+    } catch (error) {
+      console.error("failed in axios POST JSX", error);
+    }
   };
 
   return (
@@ -37,7 +54,7 @@ function FeelingsOne() {
       </form>
 
       <Link to="/UnderstandingTwo">
-        <button>Next</button>
+        <button onClick={handleSubmit}>Next</button>
       </Link>
     </div>
   );

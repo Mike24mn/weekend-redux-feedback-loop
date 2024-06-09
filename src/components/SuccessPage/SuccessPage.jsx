@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, HashRouter as router, Link } from "react-router-dom";
 
 function SuccessPage() {
@@ -34,7 +34,7 @@ function SuccessPage() {
 
       <h2>Thank You!!!</h2>
 
-      <Link to="/FeelingsOne">
+      <Link to="/">
         <button>Leave New Feedback</button>
       </Link>
     </div>
