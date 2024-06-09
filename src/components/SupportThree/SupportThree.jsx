@@ -16,27 +16,14 @@ function SupportThree() {
   const handleSubmit = async (event) => {
     dispatch({ type: "SET_SUPPORT", payload: newSupport });
 
-    try {
-      await axios.post("/api/feedback", currentFeedback);
 
-      const feedbackResponse = await axios.get("/api/feedback");
-
-      dispatch({
-        type: "GET_FEEDBACK",
-        payload: feedbackResponse.data,
-      });
-      setSupport("");
-      //history.push("/UnderstandingTwo");
-    } catch (error) {
-      console.error("failed in axios POST JSX", error);
-    }
   };
 
   return (
     <div>
       <h1>How well are you being supported?</h1>
       <form>
-        <input
+        <input data-testid="input"
           type="text"
           placeholder="Support Level"
           value={newSupport}
@@ -44,7 +31,7 @@ function SupportThree() {
         />
       </form>
       <Link to="/CommentsFour">
-        <button onClick={handleSubmit}>Next</button>
+        <button data-testid="next" onClick={handleSubmit}>Next</button>
       </Link>
     </div>
   );

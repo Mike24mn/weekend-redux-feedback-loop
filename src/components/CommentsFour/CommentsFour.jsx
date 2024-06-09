@@ -15,27 +15,14 @@ function CommentsFour() {
   const handleSubmit = async (event) => {
     dispatch({ type: "SET_COMMENTS", payload: newComment });
 
-    try {
-      await axios.post("/api/feedback", currentFeedback);
 
-      const feedbackResponse = await axios.get("/api/feedback");
-
-      dispatch({
-        type: "GET_FEEDBACK",
-        payload: feedbackResponse.data,
-      });
-      setComment("");
-      //history.push("/UnderstandingTwo");
-    } catch (error) {
-      console.error("failed in axios POST JSX", error);
-    }
   };
 
   return (
     <div>
       <h1>Any comments you want to leave?</h1>
       <form>
-        <input
+        <input data-testid="input"
           type="text"
           placeholder="Comments"
           value={newComment}
@@ -43,7 +30,7 @@ function CommentsFour() {
         />
       </form>
       <Link to="/ReviewPage">
-        <button onClick={handleSubmit}>Next</button>
+        <button data-testid="next" onClick={handleSubmit}>Next</button>
       </Link>
     </div>
   );

@@ -17,27 +17,14 @@ function UnderstandingTwo() {
   const handleSubmit = async (event) => {
     dispatch({ type: "SET_UNDERSTANDING", payload: newUnderstanding });
 
-    try {
-      await axios.post("/api/feedback", currentFeedback);
 
-      const feedbackResponse = await axios.get("/api/feedback");
-
-      dispatch({
-        type: "GET_FEEDBACK",
-        payload: feedbackResponse.data,
-      });
-      setUnderstanding("");
-      //history.push("/UnderstandingTwo");
-    } catch (error) {
-      console.error("failed in axios POST JSX", error);
-    }
   };
 
   return (
     <div>
       <h1>How well are you understanding the content?</h1>
       <form>
-        <input
+        <input data-testid="input"
           type="text"
           placeholder="Understanding"
           value={newUnderstanding}
@@ -45,7 +32,7 @@ function UnderstandingTwo() {
         />
       </form>
       <Link to="/SupportThree">
-        <button onClick={handleSubmit}>Next</button>
+        <button data-testid="next" onClick={handleSubmit}>Next</button>
       </Link>
     </div>
   );

@@ -29,7 +29,7 @@ function ReviewPage() {
     console.log("current feedback is", currentFeedback);
   
     const handleSubmit = async (event) => {
-  
+
     
   
   
@@ -62,7 +62,7 @@ function ReviewPage() {
           <div>Comments: {currentFeedback.comments}</div>
         </div>
         <Link to="/SuccessPage">
-          <button type="submit" onClick={handleSubmit}>Submit</button>
+          <button data-testid="next" type="submit" onClick={handleSubmit}>Submit</button>
         </Link>
       </form>
     </div>

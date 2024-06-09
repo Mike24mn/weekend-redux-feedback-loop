@@ -17,28 +17,14 @@ function FeelingsOne() {
 
   const handleSubmit = async (event) => {
     dispatch({ type: "SET_FEELINGS", payload: newFeeling });
-
-    try {
-      await axios.post("/api/feedback", currentFeedback);
-
-      const feedbackResponse = await axios.get("/api/feedback");
-
-      dispatch({
-        type: "GET_FEEDBACK",
-        payload: feedbackResponse.data,
-      });
-      setFeeling("");
-      //history.push("/UnderstandingTwo");
-    } catch (error) {
-      console.error("failed in axios POST JSX", error);
-    }
-  };
+  }
+   
 
   return (
     <div>
       <h1>How are you feeling today?</h1>
       <form>
-        <input
+        <input data-testid="input"
           type="text"
           placeholder="Feeling"
           value={newFeeling}
@@ -47,7 +33,7 @@ function FeelingsOne() {
       </form>
 
       <Link to="/UnderstandingTwo">
-        <button onClick={handleSubmit}>Next</button>
+        <button data-testid="next" onClick={handleSubmit}>Next</button>
       </Link>
     </div>
   );

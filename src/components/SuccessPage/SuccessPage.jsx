@@ -35,7 +35,7 @@ function SuccessPage() {
       <h2>Thank You!!!</h2>
 
       <Link to="/">
-        <button>Leave New Feedback</button>
+        <button data-testid="next">Leave New Feedback</button>
       </Link>
     </div>
   );
