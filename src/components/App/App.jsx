@@ -20,39 +20,6 @@ import store from "../../store";
 
 function App() {
 
-  const mySelector = useSelector(store => store.feedbackReductionYo)
-
-  const dispatch = useDispatch()
-
-  const setFeelings = (feelings) => ({
-    type: "SET_FEELINGS",
-    payload: feelings,
-  })
-
-  const setUnderstanding = (understanding) => ({
-    type: "SET_UNDERSTANDING",
-    payload: understanding,
-  })
-
-  const setSupport = (support) => ({
-    type: "SET_SUPPORT",
-    payload: support,
-  })
-
-  const setComments = (comments) => ({
-    type: "SET_COMMENTS",
-    payload: comments,
-  })
-
-  const addFeedback = () => ({
-    type: "ADD_FEEDBACK",
-  })
-
-  const getFeedback = (feedbackList) => ({
-    type:"GET_FEEDBACK",
-    payload: feedbackList,
-  })
-
   return (
     <div className="App">
       <header className="App-header">

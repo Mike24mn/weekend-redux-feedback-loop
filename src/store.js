@@ -39,6 +39,17 @@ const feedbackReductionYo = (state = initialState, action) => {
         ...state,
         currentFeedback: { ...state.currentFeedback, comments: action.payload },
       };
+
+      // spread current state values into a new object,
+      // then create new feedbackList (if one does not exist, 
+      // if it does spread new values into this array list for
+      // every consecutive submission. The values that will be 
+      // spread will be the most recent currentFeedback
+      // submissions!!!
+
+      // also, after submission, reset out values of currentFeedback
+      // to empty strings!!!
+      
     case "ADD_FEEDBACK":
       return {
         ...state,

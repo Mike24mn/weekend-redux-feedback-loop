@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, HashRouter as router, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function ReviewPage() {
 
@@ -16,6 +16,7 @@ function ReviewPage() {
     const currentFeedback = useSelector(
       (state) => state.feedbackReductionYo.currentFeedback
     );
+    
 
     // Destructure our redux state stored values 
     // feelings, understanding, support and comments,
@@ -32,7 +33,7 @@ function ReviewPage() {
     
   
   
-      dispatch({ type: "ADD_FEEDBACK", payload: newReview });
+      dispatch({ type: "ADD_FEEDBACK", payload: currentFeedback });
   
       try {
         await axios.post("/api/feedback", currentFeedback);
@@ -43,10 +44,10 @@ function ReviewPage() {
           type: "GET_FEEDBACK",
           payload: feedbackResponse.data,
         });
-        setUnderstanding("");
+        setReview(currentFeedback);
         //history.push("/UnderstandingTwo");
       } catch (error) {
-        console.error("failed in axios POST JSX", error);
+        console.error("failed in axios POST JSX REVIEW PAGE", error);
       }
     };
 

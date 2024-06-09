@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, HashRouter as router, Link } from "react-router-dom";
 
 function FeelingsOne() {
-    
   const [newFeeling, setFeeling] = useState("");
   const [newUnderstanding, setUnderstanding] = useState("");
   const [newSupport, setSupport] = useState("");
   const [newComment, setComment] = useState("");
-
 
   const dispatch = useDispatch();
 
@@ -18,11 +16,6 @@ function FeelingsOne() {
   );
 
   const handleSubmit = async (event) => {
-
-    
-
-
-
     dispatch({ type: "SET_FEELINGS", payload: newFeeling });
 
     try {
